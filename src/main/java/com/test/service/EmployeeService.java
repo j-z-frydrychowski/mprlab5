@@ -105,4 +105,21 @@ public class EmployeeService {
         // Automatyczne dostosowanie wynagrodzenia do bazy nowego stanowiska
         employee.setSalary(newPosition.getSalary());
     }
+
+    public void giveRaise(Employee employee, double percentage) {
+        if (percentage <= 0) {
+            throw new InvalidDataException("Raise percentage must be positive");
+        }
+
+        double currentSalary = employee.getSalary();
+        double raiseAmount = currentSalary * (percentage / 100.0);
+        double newSalary = currentSalary + raiseAmount;
+        double maxSalaryForPosition = employee.getJobTitle().getMaxSalary();
+
+        if (newSalary > maxSalaryForPosition) {
+            newSalary = maxSalaryForPosition;
+        }
+
+        employee.setSalary(newSalary);
+    }
 }
