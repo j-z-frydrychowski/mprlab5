@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.tuple;
 
 public class EvaluationTest {
 
@@ -35,8 +36,8 @@ public class EvaluationTest {
                 .hasSize(2)
                 .extracting(Evaluation::year, Evaluation::score)
                 .containsExactly(
-                        org.assertj.core.tuple.Tuple.tuple(2023, 5),
-                        org.assertj.core.tuple.Tuple.tuple(2024, 4)
+                        tuple(2023, 5),
+                        tuple(2024, 4)
                 );
     }
 
