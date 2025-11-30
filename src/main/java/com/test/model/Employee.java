@@ -15,6 +15,7 @@ public class Employee {
     private double salary;
     private LocalDate hireDate;
     private List<Evaluation> evaluations = new ArrayList<>();
+    private String currentTeamName;
 
     public Employee(){
         this.companyName = "TechCorp";
@@ -90,6 +91,9 @@ public class Employee {
         }
         return Period.between(hireDate, referenceDate).getYears();
     }
+    public String getCurrentTeamName() {
+        return currentTeamName;
+    }
 
     public void setName(String name) {
         this.name = validate(name);
@@ -111,6 +115,13 @@ public class Employee {
             throw new IllegalArgumentException("Salary cannot be negative or zero");
         }
         else this.salary = salary;
+    }
+    public void setCurrentTeamName(String teamName) {
+        this.currentTeamName = teamName;
+    }
+
+    public boolean hasTeam() {
+        return currentTeamName != null && !currentTeamName.isEmpty();
     }
 
     @Override
