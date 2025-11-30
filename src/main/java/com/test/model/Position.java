@@ -1,26 +1,28 @@
 package com.test.model;
 
 public enum Position {
-    PREZES("Prezes",25000),
-    WICEPREZES("Wiceprezes",18000),
-    MANAGER("Manager",12000),
-    PROGRAMISTA("Programista",8000),
-    STAZYSTA("Stażysta", 3000);
+    STAZYSTA("Stażysta", 3000, 5000, 1),
+    PROGRAMISTA("Programista", 8000, 15000, 2),
+    MANAGER("Manager", 12000, 20000, 3),
+    WICEPREZES("Wiceprezes", 18000, 30000, 4),
+    PREZES("Prezes", 25000, 50000, 5);
 
-    public final String name;
-    public final double salary;
+    private final String name;
+    private final double baseSalary;
+    private final double maxSalary;
+    private final int hierarchyLevel;
 
-    private Position(String name, double salary) {
+    Position(String name, double baseSalary, double maxSalary, int hierarchyLevel) {
         this.name = name;
-        this.salary = salary;
-    }
-    public double getSalary() {
-        return this.salary;
+        this.baseSalary = baseSalary;
+        this.maxSalary = maxSalary;
+        this.hierarchyLevel = hierarchyLevel;
     }
 
-    public String getName() {
-        return this.name;
-    }
+    public String getName() { return name; }
+    public double getSalary() { return baseSalary; }
+    public double getMaxSalary() { return maxSalary; }
+    public int getHierarchyLevel() { return hierarchyLevel; }
 
     public static Position getPosition(String name){
         return Position.valueOf(name.toUpperCase());
